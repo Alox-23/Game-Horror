@@ -3,30 +3,30 @@ from particles.gravParticle import gravParticle
 import math
 
 class pycParticle(gravParticle):
-    def checkCollide(self, rects):
-        hit = False
-        for rect in rects:
-            if pygame.Rect.colliderect(self.rect, rect):
-                hit = True
-                if self.dy > 0:
-                    self.dy = -self.dy // 2
-                if self.dx > 0:
-                    self.dx = -self.dx
-                if self.rect.bottom == rect.top:
-                    self.dy = -self.dy
-                if self.rect.top == rect.bottom:
-                    self.dy = self.dy
-                if self.rect.right == rect.left:
-                    self.dx = -self.dx
-                if self.rect.left == rect.right:
-                    self.dx = self.dx
-        return hit
+    def __init__(self, x, y, span, size, dx, dy, g):
+        super().__init__(x, y, span, size, dx, dy, g)
+        self.br = -2
 
-    def update(self, change, rand, rects):
+    def Collide(self, rects, b):
+        for rect in rects:   
+            if self.br < 0:
+                self.horCollide(rect, b)
+            else:
+                self.vertCollide(rect, b)
+
+    def vertCollide(self, rect, b):
+        if pygame.Rect.colliderect(self.rect, rect):
+            self.dy = self.dy * -b
+    def horCollide(self, rect, b):
+        if pygame.Rect.colliderect(self.rect, rect):
+            self.dx = self.dx * -b
+
+    def update(self, change, rand, rects, b):
         self.dy += self.gravity
         self.size -= change
         self.rect = pygame.Rect(self.x, self.y, self.size, self.size)
 
-        self.checkCollide(rects)
+        self.Collide(rects, b)
         self.x += self.dx
         self.y += self.dy
+        self.br *= -1

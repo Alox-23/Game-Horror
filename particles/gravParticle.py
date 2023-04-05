@@ -2,7 +2,7 @@ import pygame
 from particles.Particle import Particle
 
 class gravParticle(Particle):
-    def update(self, change, rand, rect):
+    def update(self, change, rand, rects, b):
         self.dy += self.gravity
         self.size -= change
         self.rect = pygame.Rect(self.x, self.y, self.size, self.size)

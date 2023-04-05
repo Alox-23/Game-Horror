@@ -9,14 +9,14 @@ class Particle:
         self.y = y
         self.dy = dy
         self.dx = dx
+        self.gravity = g
         self.rect = pygame.Rect(x, y, size, size)
         self.life_span = span
         self.start_time = time.time()
         self.size = size
         self.dead = False
-        self.gravity = g
 
-    def update(self, change, rand, rects):
+    def update(self, change, rand, rects, b):
         self.dy += random.uniform(-rand, rand)
         self.dx += random.uniform(-rand, rand)
         self.size -= change
@@ -28,7 +28,7 @@ class Particle:
             del self
             
     def draw(self, screan, color):
-        pygame.draw.circle(screan, color, (self.x, self.y), self.size)
+        pygame.draw.circle(screan, color,(self.x, self.y), self.size)
 
     def checkDeath(self):
         return time.time() > self.start_time + self.life_span

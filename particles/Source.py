@@ -11,13 +11,13 @@ class Source:
         self.x = x
         self.y = y
 		
-    def emmit(self, life_span, particle, size = 3, amount = 1, dx = 0, dy = 0, gravity = 0.5):
+    def emmit(self, life_span, particle, size = 3, amount = 1, dx = 0, dy = 0, gravity = 0.1):
         for i in range(amount):
             self.particles.append(particle(self.x, self.y, life_span, size, dx, dy, gravity))
 		
-    def update(self, rand = 0.2, change = 0.1, rects = []):
+    def update(self, rand = 0.2, change = 0.1, rects = [], b = 2):
         for part_num, part in enumerate(self.particles):
-            part.update(change, rand, rects)
+            part.update(change, rand, rects, b = b)
             if part.checkDeath():
                 del self.particles[part_num]
     def setSource(self, x, y):

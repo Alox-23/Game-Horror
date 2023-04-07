@@ -24,7 +24,7 @@ class pycParticle(gravParticle):
     def update(self, change, rand, rects, b, delta_time):
         self.dy += self.gravity
         self.size -= change
-        self.rect = pygame.Rect(self.x, self.y, self.size, self.size)
+        self.rect = pygame.Rect(self.x, self.y, self.size*2, self.size*2)
 
         self.Collide(rects, b)
         self.x += self.dx * delta_time

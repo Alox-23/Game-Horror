@@ -16,12 +16,12 @@ e = False
 while True:
     dt = time.time() - last_time
     dt *= tFPS
-    print(dt)
     last_time= time.time()
     screan.fill('black')
     p.setSource(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-    p.update(rects = rects, change = 0.00, b = 1, rand = 0.1, delta_time = dt)
-    p.draw(screan,  (255, 0, 0))
+    p.update(rects = rects, change = 0.1, b = 1, rand = 0.2, delta_time = dt)
+    p.draw_light(screan,  (55, 20, 0), light_size = 2.5)
+    p.draw(screan, (255, 255, 255))
     pygame.display.set_caption(str(int(Clock.get_fps())))
     for i in rects:
         pygame.draw.rect(screan, (255, 255, 255), i)
@@ -35,7 +35,7 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             e = True
     if e:
-        p.emmit(1, particles.pycParticle.pycParticle, amount = 1,size = 1, gravity = 0.1, dx = random.uniform(-2, 2), dy = random.uniform(-2, 0))
+        p.emmit(5, particles.pycParticle.pycParticle, amount = 1,size = 5, gravity = 0.1, dx = random.uniform(-2, 2), dy = random.uniform(-2, 0))
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_UP]:

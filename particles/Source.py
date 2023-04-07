@@ -27,18 +27,17 @@ class Source:
         for particle in self.particles:
             particle.draw(screan, (random.randint(0,255), random.randint(0,255), random.randint(0,255)))
 
+    def draw_light(self, screan, color, light_size):
+        for particle in self.particles:
+            particle.draw_light(screan, color, light_size = light_size)
+
     def draw(self, screan, color):
         for particle in self.particles:
             particle.draw(screan, color)
-    
+
     def draw_rect(self, screan, color):
         for particle in self.particles:
             particle.draw_rect(screan, color)
-    
-    def draw_light(self, screan, color):
-        for particle in self.particles:
-            particle.draw_light(screan, color)
-
 
     def print_length(self):
         print(len(self.particles))

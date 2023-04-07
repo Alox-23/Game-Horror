@@ -2,10 +2,10 @@ import pygame
 from particles.Particle import Particle
 
 class gravParticle(Particle):
-    def update(self, change, rand, rects, b):
+    def update(self, change, rand, rects, b, delta_time):
         self.dy += self.gravity
         self.size -= change
         self.rect = pygame.Rect(self.x, self.y, self.size, self.size)
 
-        self.x += self.dx
-        self.y += self.dy
+        self.x += self.dx * delta_time
+        self.y += self.dy * delta_time

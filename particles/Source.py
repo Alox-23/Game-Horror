@@ -15,9 +15,9 @@ class Source:
         for i in range(amount):
             self.particles.append(particle(self.x, self.y, life_span, size, dx, dy, gravity))
 		
-    def update(self, rand = 0.2, change = 0.1, rects = [], b = 2):
+    def update(self, rand = 0.2, change = 0.1, rects = [], b = 2, delta_time = 1):
         for part_num, part in enumerate(self.particles):
-            part.update(change, rand, rects, b = b)
+            part.update(change, rand, rects, b, delta_time)
             if part.checkDeath():
                 del self.particles[part_num]
     def setSource(self, x, y):
@@ -30,6 +30,15 @@ class Source:
     def draw(self, screan, color):
         for particle in self.particles:
             particle.draw(screan, color)
+    
+    def draw_rect(self, screan, color):
+        for particle in self.particles:
+            particle.draw_rect(screan, color)
+    
+    def draw_light(self, screan, color):
+        for particle in self.particles:
+            particle.draw_light(screan, color)
+
 
     def print_length(self):
         print(len(self.particles))

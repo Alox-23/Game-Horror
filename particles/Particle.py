@@ -16,19 +16,25 @@ class Particle:
         self.size = size
         self.dead = False
 
-    def update(self, change, rand, rects, b):
+    def update(self, change, rand, rects, b, delta_time):
         self.dy += random.uniform(-rand, rand)
         self.dx += random.uniform(-rand, rand)
         self.size -= change
         self.rect = pygame.Rect(self.x, self.y, self.size, self.size)
         
-        self.x += self.dx
-        self.y += self.dy
+        self.x += self.dx * delta_time
+        self.y += self.dy * delta_time
         if self.size == 0:
             del self
             
     def draw(self, screan, color):
         pygame.draw.circle(screan, color,(self.x, self.y), self.size)
+
+    def draw_rect(self, screan, color):
+        pygame.draw.rect(screan, color, self.rect)
+    
+    def draw_light(self, screan, color, mask):
+        pass
 
     def checkDeath(self):
         return time.time() > self.start_time + self.life_span

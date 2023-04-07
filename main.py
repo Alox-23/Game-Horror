@@ -21,7 +21,7 @@ while True:
     screan.fill('black')
     p.setSource(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
     p.update(rects = rects, change = 0.00, b = 1, rand = 0.1, delta_time = dt)
-    p.draw_rect(screan,  (255, 0, 0))
+    p.draw(screan,  (255, 0, 0))
     pygame.display.set_caption(str(int(Clock.get_fps())))
     for i in rects:
         pygame.draw.rect(screan, (255, 255, 255), i)

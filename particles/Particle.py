@@ -30,11 +30,5 @@ class Particle:
     def draw(self, screan, color):
         pygame.draw.circle(screan, color,(self.x, self.y), self.size)
 
-    def draw_rect(self, screan, color):
-        pygame.draw.rect(screan, color, self.rect)
-    
-    def draw_light(self, screan, color, mask):
-        pass
-
     def checkDeath(self):
         return time.time() > self.start_time + self.life_span
